@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .container-register {
+    width: 40%;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    .example-section {
+      padding-bottom: 15px;
+    }
+  }
+}

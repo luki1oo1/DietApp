@@ -1,0 +1,45 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+
+  .container-login {
+    max-width: 50%;
+    // transform: translateY(-50%);
+
+    h1 {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+
+    .example-full-width {
+      width: 100%;
+    }
+
+    .btn {
+      margin-top: 20px;
+
+      .btn-register {
+        background-color: rgb(9, 133, 9);
+        color: #fff;
+        margin-left: 15px;
+      }
+    }
+  }
+}
+
+.username {
+  color: rgb(255, 0, 0);
+}
+
+.password {
+  color: rgb(255, 0, 0);
+}

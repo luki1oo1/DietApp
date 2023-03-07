@@ -1,1 +1,45 @@
-<p>login works!</p>
+<div class="container">
+    <div class="container-login">
+        <h1>Zaloguj się</h1>
+        <mat-card class="example-card">
+            <form class="example-form"
+                  [formGroup]="signupForm"
+                  (ngSubmit)="onSubmit()">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Login</mat-label>
+                    <input matInput
+                           placeholder="wpisz login"
+                           formControlName="username">
+                    <p class="username"
+                       *ngIf="username?.errors">
+                        wpisz login!
+                    </p>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput
+                           type="password"
+                           placeholder="Wpisz Hasło"
+                           formControlName="password">
+                    <p class="password"
+                       *ngIf="password?.errors">
+                        wpisz password!
+                    </p>
+                </mat-form-field>
+                <div class="btn">
+                    <a routerLink="/dashboard">
+                        <button mat-raised-button
+                                color="primary"
+                                (click)="submit()">Login</button>
+                    </a>
+                    <a routerLink="/register">
+                        <button class="btn-register"
+                                mat-raised-button>Zarejestruj</button>
+                    </a>
+
+                </div>
+            </form>
+        </mat-card>
+    </div>
+</div>
