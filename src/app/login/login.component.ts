@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthGuardService } from '../services/auth-guard.service';
+import { AuthService } from '../services/auth.service';
+import { IUser, LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,47 +12,33 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   signupForm!: FormGroup;
+  loginFlag: boolean = false;
+  returnUrl!: string;
 
-  constructor() {}
-
+  constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private authGuardService: AuthGuardService
+  ) {}
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
-      username: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required]),
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
     });
   }
 
-  onSubmit() {
-    console.log(this.signupForm);
+  checkAccount(arg: IUser) {
+    this.loginFlag = this.loginService.checkAccount(arg);
   }
 
   submit() {
-    this.signupForm.value;
-    if (!null) {
-      console.log(
-        Object.keys(localStorage).find(
-          (el) => el === this.signupForm.value.username
-        )
-      );
-
-      if (
-        this.signupForm.value.username ===
-          Object.keys(localStorage).find(
-            (el) => el === this.signupForm.value.username
-          ) &&
-        this.signupForm.value.password ===
-          Object.keys(localStorage).find(
-            (el) => el === this.signupForm.value.password
-          )
-      ) {
-        localStorage.setItem('isLoggedIn', 'true');
-        setTimeout(() => {
-          localStorage.setItem('isLoggedIn', 'false');
-        }, 5000);
-      } else {
-        localStorage.setItem('isLoggedIn', 'false');
-      }
+    const formValue = this.signupForm.value;
+    const logIn = this.authService.login(formValue.username, formValue.password);
+    if(!logIn) {
+        console.log('username or password incorrect')
     }
   }
 

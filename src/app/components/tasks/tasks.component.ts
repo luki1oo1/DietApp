@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-tasks',
@@ -6,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  public arrayStr = [{ key: 'lala',
-                        age: '33' }];
+  public arrayStr = [{ key: 'lala', age: '33' }];
   public tab = [1, 4, 9, 99];
   public tab1 = [4, 4, 4];
   get getSumEl() {
@@ -86,8 +86,48 @@ export class TasksComponent implements OnInit {
   }
 
   //9
-  
-  constructor() {}
+  equivalentObjects(
+    obj1: { [key: string]: any },
+    obj2: { [key: string]: any }
+  ): boolean {
+    const objKeys1 = Object.keys(obj1);
+    const objKeys2 = Object.keys(obj2);
+
+    if (objKeys1.length !== objKeys2.length) {
+      return false;
+    }
+
+    for (let i = 0; i < objKeys1.length; i++) {
+      const key = objKeys1[i];
+
+      if (!obj2.hasOwnProperty(key) || obj1[key] !== obj2[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  //10
+
+  tabWord: string[] = ['słoń', 'kot', 'Kot', 'Pies', 'pies', 'KOT'];
+
+  countOccurrences(array: string[]): [string, number][] {
+    const value: { [word: string]: number } = {};
+    for (const word of array) {
+      const normalWord = word.toLowerCase();
+
+      if (!(normalWord in value)) {
+        value[normalWord] = 1;
+      } else {
+        value[normalWord]++;
+      }
+    }
+    const sortArray = Object.entries(value).sort((a, b) => b[1] - a[1]);
+    return sortArray;
+  }
+
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
     console.log(this.getSumEl, '1');
@@ -98,5 +138,7 @@ export class TasksComponent implements OnInit {
     this.checkDuplicates(this.strArray, 'r');
     this.getDuplicationEl(this.array, this.strArray);
     console.log(this.convertArrayOfObjectsToCSV(this.arrayStr));
+    console.log(this.equivalentObjects({ name: 'Tom' }, { name: 'Tom' }));
+    console.log(this.countOccurrences(this.tabWord));
   }
 }

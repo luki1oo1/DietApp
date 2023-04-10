@@ -11,8 +11,19 @@
     display: flex;
     flex-direction: column;
 
+    .mat-form-field {
+      p {
+        color: rgb(255, 0, 0);
+        padding-top: 4px;
+      }
+    }
+
     .example-section {
       padding-bottom: 15px;
+
+      .example-margin {
+        margin-right: 4px;
+      }
     }
   }
 }

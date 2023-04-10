@@ -19,19 +19,19 @@
                         </mat-radio-group>
                     </section>
 
-                    <ng-container *ngIf="typeUser === 'usser'">
+                    <ng-container>
                         <mat-form-field class="full-width">
                             <mat-label>Imie</mat-label>
                             <input matInput
                                    placeholder="First name"
-                                   formControlName="fname"
+                                   formControlName="name"
                                    required>
                         </mat-form-field>
                         <mat-form-field class="full-width">
                             <mat-label>nazwisko</mat-label>
                             <input matInput
                                    placeholder="Last Name"
-                                   formControlName="lname"
+                                   formControlName="surname"
                                    required>
                         </mat-form-field>
                         <mat-form-field class="full-width">
@@ -46,6 +46,7 @@
                             <input matInput
                                    placeholder="Email"
                                    formControlName="email">
+                            <p *ngIf="emailTaken">Wybrany email juz istnieje!</p>
                         </mat-form-field>
                         <mat-form-field class="full-width">
                             <mat-label>Password</mat-label>
@@ -53,54 +54,8 @@
                                    placeholder="Password"
                                    formControlName="password">
                         </mat-form-field>
-                        <section class="example-section">
-                            <label class="example-margin">Gender:</label>
-                            <mat-radio-group [(ngModel)]="gender"
-                                             [ngModelOptions]="{standalone: true}">
-                                <mat-radio-button class="example-margin"
-                                                  value="after">Męzczyzna</mat-radio-button>
-                                <mat-radio-button class="example-margin"
-                                                  value="before">Kobieta</mat-radio-button>
-                            </mat-radio-group>
-                        </section>
-
-                    </ng-container>
-
-                    <ng-container *ngIf="typeUser === 'dietetican'">
-                        <mat-form-field class="full-width">
-                            <mat-label>Imie</mat-label>
-                            <input matInput
-                                   placeholder="First name"
-                                   formControlName="dietFName"
-                                   required>
-                        </mat-form-field>
-                        <mat-form-field class="full-width">
-                            <mat-label>nazwisko</mat-label>
-                            <input matInput
-                                   placeholder="Last Name"
-                                   formControlName="dietLName"
-                                   required>
-                        </mat-form-field>
-                        <mat-form-field class="full-width">
-                            <mat-label>Address</mat-label>
-                            <input matInput
-                                   placeholder="Address"
-                                   formControlName="dietAddress"
-                                   required>
-                        </mat-form-field>
-                        <mat-form-field class="full-width">
-                            <mat-label>Email</mat-label>
-                            <input matInput
-                                   placeholder="Email"
-                                   formControlName="dietEmail">
-                        </mat-form-field>
-                        <mat-form-field class="full-width">
-                            <mat-label>Password</mat-label>
-                            <input matInput
-                                   placeholder="Password"
-                                   formControlName="dietPassword">
-                        </mat-form-field>
-                        <mat-form-field class="full-width">
+                        <mat-form-field class="full-width"
+                                        *ngIf="typeUser === 'dietetican'">
                             <mat-label>Specjalizacja/Umiejętności</mat-label>
                             <textarea matInput
                                       placeholder="skills"
@@ -113,7 +68,7 @@
                         <button class="btn-register"
                                 color="primary"
                                 mat-raised-button
-                                (click)="submit()">Zarejestruj</button>
+                                [disabled]="!registerForm.valid || emailTaken">Zarejestruj</button>
                     </div>
                 </form>
             </mat-card-content>

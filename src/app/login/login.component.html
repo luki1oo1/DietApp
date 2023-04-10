@@ -3,8 +3,7 @@
         <h1>Zaloguj się</h1>
         <mat-card class="example-card">
             <form class="example-form"
-                  [formGroup]="signupForm"
-                  (ngSubmit)="onSubmit()">
+                  [formGroup]="signupForm">
                 <mat-form-field class="example-full-width">
                     <mat-label>Login</mat-label>
                     <input matInput
@@ -23,12 +22,12 @@
                            placeholder="Wpisz Hasło"
                            formControlName="password">
                     <p class="password"
-                       *ngIf="password?.errors">
-                        wpisz password!
+                       *ngIf="password?.touched && password?.errors">
+                        wpisz hasło!
                     </p>
                 </mat-form-field>
                 <div class="btn">
-                    <a routerLink="/dashboard">
+                    <a>
                         <button mat-raised-button
                                 color="primary"
                                 (click)="submit()">Login</button>
