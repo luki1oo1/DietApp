@@ -35,10 +35,49 @@
                                    required>
                         </mat-form-field>
                         <mat-form-field class="full-width">
-                            <mat-label>Address</mat-label>
+                            <mat-label>Miasto</mat-label>
                             <input matInput
-                                   placeholder="Address"
-                                   formControlName="address"
+                                   placeholder="Miasto"
+                                   formControlName="city"
+                                   required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Ulica</mat-label>
+                            <input matInput
+                                   placeholder="Ulica"
+                                   formControlName="street"
+                                   required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Kod pocztowy</mat-label>
+                            <input matInput
+                                   placeholder="Kod pocztowy"
+                                   formControlName="postcode"
+                                   required>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                            <mat-label>Płeć:</mat-label>
+                            <input matInput
+                                   placeholder="Płeć:"
+                                   formControlName="gender"
+                                   required>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Wiek:</mat-label>
+                            <mat-select formControlName="age">
+                                <mat-option *ngFor="let age of ageList"
+                                            [value]="age">{{ age }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+
+
+                        <mat-form-field class="full-width">
+                            <mat-label>Telefon:</mat-label>
+                            <input matInput
+                                   placeholder="Telefon:"
+                                   formControlName="phone"
                                    required>
                         </mat-form-field>
                         <mat-form-field class="full-width">

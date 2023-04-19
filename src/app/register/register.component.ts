@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
   emailTaken: boolean = false;
   registerForm!: FormGroup;
   users: IUser[] = [];
+  selectedAge!: number;
+  ageList: number[] = [];
 
   constructor(
     private registerService: RegisterService,
@@ -28,8 +30,13 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
       surname: new FormControl(null, [Validators.required]),
-      address: new FormControl(null, [Validators.required]),
+      city: new FormControl(null, [Validators.required]),
+      street: new FormControl(null, [Validators.required]),
+      postcode: new FormControl(null, [Validators.required]),
+      gender: new FormControl(null, [Validators.required]),
+      phone: new FormControl(null, [Validators.required]),
       email: new FormControl(null, [Validators.required, Validators.email]),
+      age: new FormControl(null, [Validators.required]),
       password: new FormControl(null, [
         Validators.required,
         Validators.minLength(3),
@@ -42,10 +49,14 @@ export class RegisterComponent implements OnInit {
         this.emailTaken = false;
       }
     });
+
+    for (let i = 18; i <= 99; i++) {
+      this.ageList.push(i);
+    }
   }
 
   onSubmit() {
-    this.registerService.saveUser(this.registerForm.value).subscribe(
+    this.registerService.saveUser({...this.registerForm.value, typeUser: this.typeUser}).subscribe(
       (result) => {
         this.router.navigate(['/']);
       },

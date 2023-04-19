@@ -8,6 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +18,6 @@ import { TasksComponent } from './components/tasks/tasks.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ProfileUserComponent } from './profile-user/profile-user.component';
 import { RegisterComponent } from './register/register.component';
 import { UserComponent } from './user/user.component';
 
@@ -30,7 +30,6 @@ import { UserComponent } from './user/user.component';
     UserComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +45,7 @@ import { UserComponent } from './user/user.component';
     MatDatepickerModule,
     FormsModule,
     ReactiveFormsModule,
+    MatSelectModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

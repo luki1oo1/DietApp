@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+
+  .info-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

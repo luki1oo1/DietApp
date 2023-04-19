@@ -1,7 +1,19 @@
-<p>dashboard works!</p>
-<!-- <div *ngIf="authService.isLoggedIn(); then welcome else notLoggedIn"></div>
-<ng-template #welcome>
-    <h1>Welcome to the Dashboard!</h1>
-</ng-template>
-<ng-template #notLoggedIn>
-    <p>Please log in to access the dashboard.</p> -->
+<div class="container">
+    <div class="notice-container">
+        <div class="name-user">
+            <h4>Ogłoszenie: {{myObject.name}} {{myObject.surname}} data: {{ myDate | date: 'dd/MM/yyyy'}}</h4>
+            <button class="show-user">zobacz profil</button>
+        </div>
+        <div *ngFor="let post of posts">
+            <h1>{{post | json}}</h1>
+        </div>
+    </div>
+    <div class="add-posts">
+        <textarea name=""
+                  id=""
+                  cols="50"
+                  rows="3"
+                  [(ngModel)]="text"></textarea>
+        <button (click)="click()">dodaj ogłoszenie</button>
+    </div>
+</div>
